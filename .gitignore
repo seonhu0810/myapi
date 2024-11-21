@@ -1,13 +1,30 @@
-# Python 관련
+# Virtual environment
 __pycache__/
 *.pyc
-.env
 venv/
+
+# Python 관련
 .mypy_cache/
 .pytest_cache/
+
+#IDE files
 .idea
+.vscode/
+.iml
+
+# Database files
+*.db
+myapi.db
+
+# Logs
+*.log
+
+# Evironment files
+.env
 
 # Node.js 및 React 관련
 frontend/node_modules/
 frontend/build/
-.env
+
+# Alembic files
+migrations/
