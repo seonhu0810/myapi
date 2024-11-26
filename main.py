@@ -1,7 +1,14 @@
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from domain.question import question_router
+
 app = FastAPI()
+
+origin = [
+    "http://localhost:5173"
+]
 # CORS 미들웨어 설정
 app.add_middleware(
     CORSMiddleware,
@@ -10,6 +17,5 @@ app.add_middleware(
     allow_methods=["*"],  # 모든 HTTP 메소드(GET, POST 등) 허용
     allow_headers=["*"],  # 모든 헤더 허용
 )
-@app.get("/hello")
-def hello():
-    return {"message":"HELLO"}
+
+app.include_router(question_router.router)
