@@ -1,30 +1,16 @@
-import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import Detail from "./components/Detail";
 
-const QuestionList = () => {
-  const [questionList, setQuestionList] = useState([]);
-
-  // Fetch question list
-  const getQuestionList = async () => {
-    try {
-      const response = await fetch("http://127.0.0.1:8000/api/question/list");
-      const data = await response.json();
-      setQuestionList(data);
-    } catch (error) {
-      console.error("Error fetching question list:", error);
-    }
-  };
-
-  useEffect(() => {
-    getQuestionList();
-  }, []); // Empty dependency array ensures this runs once on mount
-
+const App = () => {
   return (
-    <ul>
-      {questionList.map((question, index) => (
-        <li key={index}>{question.subject}</li>
-      ))}
-    </ul>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/detail/:questionId" element={<Detail />} />
+      </Routes>
+    </Router>
   );
 };
 
-export default QuestionList;
+export default App;
